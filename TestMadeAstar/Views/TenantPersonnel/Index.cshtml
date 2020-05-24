@@ -1,0 +1,96 @@
+﻿@model IEnumerable<TestMadeAstar.Models.TenantPersonnel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddT")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            FirstName
+        </th>
+        <th>
+            MiddleName
+        </th>
+        <th>
+            LastName
+        </th>
+        <th>
+            NickName
+        </th>
+        <th>
+            DOB
+        </th>
+        <th>
+            Active
+        </th>
+        <th>
+            PrefixId
+        </th>
+        <th>
+            Gender
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MiddleName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NickName)
+            </td>
+            <td>
+                @item.DOB.ToShortDateString();
+                @*@Html.DisplayFor(modelItem => item.DOB)*@
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Active)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PrefixID)
+            </td>
+            <td>
+                @{ if (item.GenderFk == 1)
+                    {
+                        <span>Femenino</span>
+                    }
+                    else
+                    {
+                        <span>Masculino</span>
+                    }
+
+                }
+                @*@Html.DisplayFor(modelItem => item.GenderFk)*@
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditT", new { id = item.TenantId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.TenantId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TenantId }, new { @class = "aElimina" })
+            </td>
+        </tr>
+    }
+
+</table>
+@section scripts{
+    <script>
+        $(".aElimina").click(function (event) {
+            if (!confirm('Estas seguro de eliminar el alumno?')) {
+                event.preventDefault();
+            }
+        });
+    </script>
+}

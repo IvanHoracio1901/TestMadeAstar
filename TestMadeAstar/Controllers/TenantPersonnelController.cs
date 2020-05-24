@@ -9,9 +9,10 @@ namespace TestMadeAstar.Controllers
 {
     public class TenantPersonnelController : Controller
     {
-        // GET: TenantPersonnel
+        // GET: TenantPersonnel 
         public ActionResult Index()
         {
+
             try
             {
                 using (var db = new TestDemoAstarEntities())
